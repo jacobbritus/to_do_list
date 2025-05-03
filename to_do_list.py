@@ -523,8 +523,8 @@ def change_order():
                 clear_terminal()
                 if 0 <= index < len(all_tasks_list):
                     while True:
-                        user_interface(
-                            Fore.LIGHTBLACK_EX + f"Move \"{all_tasks_list[index]["name"]}\" to what position?\nPress Enter twice to cancel.")
+                        display_top(Fore.LIGHTBLACK_EX + f"Move \"{all_tasks_list[index]["name"]}\" to what position?\nPress Enter twice to cancel.")
+
                         user_input = input(Fore.LIGHTWHITE_EX + "> ")
                         if not user_input:
                             clear_terminal()
