@@ -34,7 +34,6 @@ def save_data():
 
 #######################################################################################
 
-
 ### USER INTERFACE
 
 # the logo displayed at the top
