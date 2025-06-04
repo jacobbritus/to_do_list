@@ -12,7 +12,7 @@ to_do_list = []
 class ToDoList:
 
     def __init__(self, box_length):
-        self.tasks = []
+        self.tasks = {}
         self.box_length = box_length
 
     def display_tasks(self):
@@ -25,11 +25,12 @@ class ToDoList:
 
         for index, task in enumerate(self.tasks):
             keybind = "[" + str(index + 1) + "]"
-            task_name = task
+            status = self.tasks[task]["status"]
+
 
 
             print("┣" + "━" * sides_space + "╋" + "━" * self.box_length + "╋" + "━" * sides_space + "┫")
-            print("┃{key}┃{task}┃{status}┃".format(key = keybind.center(sides_space), task = task_name.center(self.box_length), status = "[ ]".center(sides_space)))
+            print("┃{key}┃{name}┃{c}┃".format(key = keybind.center(sides_space), name = task.center(self.box_length), c = status.center(sides_space)))
 
 
         print("┗" + "━" * sides_space + "┻" + "━" * self.box_length + "┻" + "━" * sides_space + "┛")
@@ -45,16 +46,30 @@ class ToDoList:
 
 
     def add_tasks(self):
-        new_task = input("Add a task: ")
-        self.tasks.append(new_task)
+        while True:
+            print("Please give this new task a name.")
+            print("Or press \"Enter\" to go back.")
+            user_input = input("> ").strip().lower()
+
+            if user_input == "":
+                break
+
+            self.tasks.update({user_input: {"status":"[ ]"}})
 
     def mark_tasks(self):
-        ...
-
+        try:
+            mark = input("Pick a task")
+            self.tasks[mark]["status"] = "[x]"
+        except KeyError:
+            print("not found.")
 
 code_list = ToDoList(20)
 
 while True:
-    code_list.display_tasks()
     code_list.add_tasks()
+    code_list.display_tasks()
+    code_list.mark_tasks()
+
     clear_terminal()
+    # code_list.mark_tasks()
+
