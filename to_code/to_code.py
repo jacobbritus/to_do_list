@@ -53,8 +53,10 @@ class ToDoList:
 
             if user_input == "":
                 break
-
-            self.tasks.update({user_input: {"status":"[ ]"}})
+            else:
+                self.tasks.update({user_input: {"status":"[ ]"}})
+                input(f"\"{user_input}\" was added.")
+                break
 
     def mark_tasks(self):
         try:
@@ -68,7 +70,6 @@ code_list = ToDoList(20)
 while True:
     code_list.add_tasks()
     code_list.display_tasks()
-    code_list.mark_tasks()
 
     clear_terminal()
     # code_list.mark_tasks()
